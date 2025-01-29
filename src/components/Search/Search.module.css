@@ -1,0 +1,15 @@
+.search {
+  border: 1px solid gray;
+  border-radius: 8px;
+
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    gap: 25px;
+    padding: 25px;
+    border: 2px solid rgba(227, 246, 12, 0.627);
+    border-radius: 8px;
+  }
+}
