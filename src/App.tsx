@@ -33,7 +33,7 @@ class App extends Component<object, AppState> {
     };
   }
 
-  getListPeople = async () => {
+  getListPeople = async (value: string) => {
     try {
       const response = await fetch(`https://swapi.dev/api/people/`);
       if (!response.ok) {
@@ -41,7 +41,9 @@ class App extends Component<object, AppState> {
       }
       const { results } = await response.json();
       this.setState(() => ({
-        people: [...results],
+        people: [
+          ...results.filter((person: People) => person.name.includes(value)),
+        ],
       }));
     } catch (error) {
       if (error instanceof Error) {

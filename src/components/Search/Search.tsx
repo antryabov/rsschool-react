@@ -4,7 +4,7 @@ import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 
 interface SearchProps {
-  fetchData: () => void;
+  fetchData: (value: string) => void;
 }
 
 export interface Films {
@@ -38,7 +38,7 @@ class Search extends Component<SearchProps, SearchState> {
 
   handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    this.props.fetchData();
+    this.props.fetchData(this.state.value);
   };
 
   handleChange = (event: ChangeEvent<HTMLInputElement>) => {
