@@ -1,10 +1,10 @@
 .people-item {
   width: 50%;
+  padding: 20px 0;
   border: 1px solid rgba(227, 246, 12, 0.627);
   border-radius: 8px;
 
-  .birth-desc {
-    font-size: 12px;
-    text-wrap: balance;
+  .card-title {
+    margin: 0;
   }
 }

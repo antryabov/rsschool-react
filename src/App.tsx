@@ -2,6 +2,7 @@ import { Component, ReactNode } from 'react';
 import './App.css';
 import Search from './components/Search/Search';
 import CardList from './components/CardList/CardList';
+import Loader from './components/UI/Loader/Loader';
 
 export interface People {
   name: string;
@@ -24,6 +25,8 @@ export interface People {
 
 interface AppState {
   people: People[] | [];
+  isLoading: boolean;
+  error: null | string;
 }
 
 class App extends Component<object, AppState> {
@@ -31,31 +34,48 @@ class App extends Component<object, AppState> {
     super(props);
     this.state = {
       people: [],
+      isLoading: false,
+      error: null,
     };
   }
 
   getListPeople = async (value: string) => {
     try {
+      this.setState({
+        isLoading: true,
+        error: null,
+      });
       const response = await fetch(
-        `https://swapi.dev/api/people/?search=${value}`
+        `https://swapi.dev/api/people/?search=${value.trim()}`
       );
       if (!response.ok) {
         throw new Error('query error');
       }
+      this.setState({
+        isLoading: false,
+      });
+
       const { results } = await response.json();
       this.setState(() => ({
         people: [...results],
       }));
+      if (!results.length && response.ok) {
+        this.setState({
+          error: 'This character has not been found',
+        });
+      }
     } catch (error) {
       if (error instanceof Error) {
-        throw new Error(error.message);
+        this.setState({
+          error: error.message,
+        });
+        console.error(error.message);
       }
     }
   };
 
   render(): ReactNode {
-    const { people } = this.state;
-    console.log(people);
+    const { people, isLoading, error } = this.state;
     return (
       <>
         <header className="header">
@@ -65,6 +85,8 @@ class App extends Component<object, AppState> {
           <Search fetchData={this.getListPeople} />
         </header>
         <main className="main">
+          {error && <h2>{error}</h2>}
+          {isLoading && <Loader />}
           <CardList people={people} />
         </main>
       </>

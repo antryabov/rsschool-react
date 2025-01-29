@@ -12,14 +12,8 @@ class Card extends Component<CardProps> {
 
     return (
       <div className={style['people-item']}>
-        <div>Name: {person.name}</div>
+        <h2 className={style['card-title']}>Name: {person.name}</h2>
         <div>Birth year: {person.birth_year}</div>
-        <p className={style['birth-desc']}>
-          The birth year of the person, using the in-universe standard of BBY or
-          ABY - Before the Battle of Yavin or After the Battle of Yavin. The
-          Battle of Yavin is a battle that occurs at the end of Star Wars
-          episode IV: A New Hope.
-        </p>
         <div>Gender: {person.gender}</div>
         <div>Height: {person.height}</div>
         <div>Eye color: {person.eye_color}</div>
