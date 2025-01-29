@@ -3,7 +3,7 @@ import style from './Button.module.css';
 
 interface ButtonProps {
   children: ReactNode;
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 class Button extends Component<ButtonProps> {

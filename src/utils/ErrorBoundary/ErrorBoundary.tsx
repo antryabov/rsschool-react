@@ -30,8 +30,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (hasError) {
       return (
         <Suspense fallback={<></>}>
-          <div>Возникла непредвиденная ошибка!</div>
-          <div>Мы уже работаем над этим!</div>
+          <h2>An unexpected error has occurred!</h2>
+          <h2>Were already working on it!</h2>
         </Suspense>
       );
     }

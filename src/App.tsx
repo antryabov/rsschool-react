@@ -5,6 +5,7 @@ import CardList from './components/CardList/CardList';
 import Loader from './components/UI/Loader/Loader';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import ErrorButton from './utils/ErrorButton/ErrorButton';
 
 export interface People {
   name: string;
@@ -46,6 +47,7 @@ class App extends Component<object, AppState> {
       this.setState({
         isLoading: true,
         error: null,
+        people: [],
       });
       const response = await fetch(
         `https://swapi.dev/api/people/?search=${value.trim()}`
@@ -94,6 +96,7 @@ class App extends Component<object, AppState> {
           {error && <h2>{error}</h2>}
           {isLoading && <Loader />}
           <CardList people={people} />
+          <ErrorButton />
         </Main>
       </>
     );
