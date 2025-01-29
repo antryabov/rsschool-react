@@ -3,6 +3,8 @@ import './App.css';
 import Search from './components/Search/Search';
 import CardList from './components/CardList/CardList';
 import Loader from './components/UI/Loader/Loader';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
 
 export interface People {
   name: string;
@@ -74,21 +76,25 @@ class App extends Component<object, AppState> {
     }
   };
 
+  componentDidMount(): void {
+    this.getListPeople('');
+  }
+
   render(): ReactNode {
     const { people, isLoading, error } = this.state;
     return (
       <>
-        <header className="header">
+        <Header>
           <h1 className="title">
             Search for characters from the Star Wars universe
           </h1>
           <Search fetchData={this.getListPeople} />
-        </header>
-        <main className="main">
+        </Header>
+        <Main>
           {error && <h2>{error}</h2>}
           {isLoading && <Loader />}
           <CardList people={people} />
-        </main>
+        </Main>
       </>
     );
   }
