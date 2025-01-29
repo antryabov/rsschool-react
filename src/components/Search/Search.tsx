@@ -15,7 +15,7 @@ class Search extends Component<SearchProps, SearchState> {
     super(props);
     this.state = {
       data: [],
-      value: '',
+      value: localStorage.getItem('search') || '',
     };
   }
 
@@ -27,6 +27,7 @@ class Search extends Component<SearchProps, SearchState> {
     this.setState({
       value: event.target.value,
     });
+    localStorage.setItem('search', event.target.value);
   };
 
   componentDidMount(): void {}
