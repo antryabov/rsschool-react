@@ -3,24 +3,42 @@ import styles from './Search.module.css';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 
-type SearchProps = object;
+interface SearchProps {
+  fetchData: () => void;
+}
+
+export interface Films {
+  title: string;
+  episode_id: number;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  characters: string[];
+  planets: string[];
+  starships: string[];
+  vehicles: string[];
+  species: string[];
+  created: string;
+  edited: string;
+  url: string;
+}
 
 interface SearchState {
   value: string;
-  data: [];
 }
 
 class Search extends Component<SearchProps, SearchState> {
   constructor(props: SearchProps) {
     super(props);
     this.state = {
-      data: [],
       value: localStorage.getItem('search') || '',
     };
   }
 
   handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    this.props.fetchData();
   };
 
   handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -30,11 +48,8 @@ class Search extends Component<SearchProps, SearchState> {
     localStorage.setItem('search', event.target.value);
   };
 
-  componentDidMount(): void {}
-
   render(): ReactNode {
     const { value } = this.state;
-
     return (
       <div className={styles.search}>
         <form>
