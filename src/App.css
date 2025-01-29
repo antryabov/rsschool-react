@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+body {
+  background: url('./assets/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-size: 18px;
+  color: #ffffff;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -11,4 +18,13 @@
 
 .header {
   max-width: 100%;
+
+  .title {
+    color: rgb(255, 255, 255);
+  }
+}
+
+.main {
+  max-width: 100%;
+  padding-top: 30px;
 }

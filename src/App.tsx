@@ -1,6 +1,7 @@
 import { Component, ReactNode } from 'react';
 import './App.css';
 import Search from './components/Search/Search';
+import CardList from './components/CardList/CardList';
 
 export interface People {
   name: string;
@@ -35,15 +36,15 @@ class App extends Component<object, AppState> {
 
   getListPeople = async (value: string) => {
     try {
-      const response = await fetch(`https://swapi.dev/api/people/`);
+      const response = await fetch(
+        `https://swapi.dev/api/people/?search=${value}`
+      );
       if (!response.ok) {
         throw new Error('query error');
       }
       const { results } = await response.json();
       this.setState(() => ({
-        people: [
-          ...results.filter((person: People) => person.name.includes(value)),
-        ],
+        people: [...results],
       }));
     } catch (error) {
       if (error instanceof Error) {
@@ -58,16 +59,13 @@ class App extends Component<object, AppState> {
     return (
       <>
         <header className="header">
+          <h1 className="title">
+            Search for characters from the Star Wars universe
+          </h1>
           <Search fetchData={this.getListPeople} />
         </header>
-        <main>
-          {people.length &&
-            people.map((person) => (
-              <div key={person.name} style={{ border: '1px solid black' }}>
-                <div>{person.name}</div>
-                <div>{person.birth_year}</div>
-              </div>
-            ))}
+        <main className="main">
+          <CardList people={people} />
         </main>
       </>
     );

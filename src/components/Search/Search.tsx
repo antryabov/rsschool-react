@@ -52,8 +52,13 @@ class Search extends Component<SearchProps, SearchState> {
     const { value } = this.state;
     return (
       <div className={styles.search}>
-        <form>
-          <Input value={value} onChange={this.handleChange} />
+        <form className={styles.form}>
+          <Input
+            placeholder="Enter a name"
+            value={value}
+            onChange={this.handleChange}
+          />
+          <label>Example: Luke Skywalker</label>
           <Button onClick={this.handleClick}>Search</Button>
         </form>
       </div>

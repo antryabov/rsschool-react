@@ -1,0 +1,8 @@
+.people-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  gap: 10px;
+  font-weight: 600;
+}

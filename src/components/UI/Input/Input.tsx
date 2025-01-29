@@ -1,15 +1,23 @@
-import { ChangeEvent, Component, ReactNode } from 'react';
+import { ChangeEvent, Component, InputHTMLAttributes, ReactNode } from 'react';
+import style from './Input.module.css';
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 class Input extends Component<InputProps> {
   render(): ReactNode {
-    const { value, onChange } = this.props;
+    const { value, onChange, placeholder } = this.props;
 
-    return <input value={value} onChange={onChange} />;
+    return (
+      <input
+        placeholder={placeholder}
+        className={style.input}
+        value={value}
+        onChange={onChange}
+      />
+    );
   }
 }
 

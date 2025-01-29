@@ -1,4 +1,5 @@
 import { Component, ReactNode, MouseEvent } from 'react';
+import style from './Button.module.css';
 
 interface ButtonProps {
   children: ReactNode;
@@ -9,7 +10,11 @@ class Button extends Component<ButtonProps> {
   render(): ReactNode {
     const { children, onClick } = this.props;
 
-    return <button onClick={onClick}>{children}</button>;
+    return (
+      <button className={style.button} onClick={onClick}>
+        {children}
+      </button>
+    );
   }
 }
 
