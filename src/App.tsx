@@ -79,7 +79,8 @@ class App extends Component<object, AppState> {
   };
 
   componentDidMount(): void {
-    this.getListPeople('');
+    const prevSearch = localStorage.getItem('search');
+    this.getListPeople(prevSearch || '');
   }
 
   render(): ReactNode {
