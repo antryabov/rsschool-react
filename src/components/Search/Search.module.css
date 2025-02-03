@@ -12,4 +12,10 @@
     border: 2px solid rgba(227, 246, 12, 0.627);
     border-radius: 8px;
   }
+
+  @media screen and (max-width: 500px) {
+    .search {
+      max-width: 500px;
+    }
+  }
 }
