@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url('./assets/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.title {
+  color: rgb(255, 255, 255);
+}
